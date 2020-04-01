@@ -3,31 +3,21 @@
 }
 
 .home-box{
-    width: 26rem;
-    margin: auto;
-    margin-top: 5rem;
-    display: inline-block;
-}
-
-.home-box div{
-  width: 8rem;
-  height: 8rem;
+  width: 26rem;
+  margin-top: 5rem;
   display: inline-block;
 }
 
+.home-box div{
+display: inline-block;
+}
+
 .box{
+  width: 8rem;
+  height: 8rem;
   border: medium solid darkred;
-  margin: -0.1rem 0rem;
   background-color: white;
   color: black;
-}
-
-.x-box{
-
-}
-
-.o-box{
-
 }
 
 .blank-box{
