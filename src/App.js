@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import HomePage from './Pages/HomePage/HomePage';
+import GamePage from './Pages/GamePage/GamePage';
+import StartPage from './Pages/StartPage/StartPage';
+
 import GlobalState from './Context/GlobalState';
 import AppContext from './Context/app-context';
 
@@ -9,9 +11,13 @@ export default () => {
     <div className="App">
       <GlobalState>
         <AppContext.Consumer>
-          {() => (
-            <HomePage />
-          )}
+          {context => {
+            if (context.gameStart) {
+              return <StartPage />
+            }else {
+              return <GamePage />
+            }
+          }}
         </AppContext.Consumer>
       </GlobalState>
     </div>

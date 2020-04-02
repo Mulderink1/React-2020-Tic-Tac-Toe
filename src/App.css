@@ -8,16 +8,16 @@
   display: inline-block;
 }
 
-.home-box div{
-display: inline-block;
-}
-
 .box{
   width: 8rem;
   height: 8rem;
   border: medium solid darkred;
   background-color: white;
   color: black;
+}
+
+.home-box div{
+  display: inline-block;
 }
 
 .blank-box{

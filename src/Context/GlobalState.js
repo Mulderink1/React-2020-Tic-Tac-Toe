@@ -1,34 +1,42 @@
 import React, { useReducer, useEffect } from 'react';
 import AppContext from './app-context';
-import AppReducer, { XCLICKED, STATE } from './reducers';
+import AppReducer, { XCLICKED, BUILDSTATE, RESETSTATE, STARTGAME } from './reducers';
 
 export default props => {
-  const [appState, dispatch] = useReducer(AppReducer, {
+  const initionalReducerState = {
     blankBlock: [],
     xBlock: [],
     oBlock: [],
-    player1: true
-  });
+    player1: true,
+    gameWin: false,
+    gameStart: true
+  };
+  const [appState, dispatch] = useReducer(AppReducer, initionalReducerState);
 
-  const setInitionalState = state => {
-    dispatch({ type: STATE, state: state })
-  }
 
   const setXBlock = xClickedObj => {
-    dispatch({ type: XCLICKED, xClickedObj: xClickedObj })
+    dispatch({ type: XCLICKED, xClickedObj: xClickedObj });
   };
 
-  useEffect(() => {
-    setInitionalState(appState);
+  const setStartGame = startGameBool => {
+    dispatch({ type: STARTGAME, startGameBool: startGameBool });
+  };
+
+  const resetState = () => {
+    dispatch({ type: RESETSTATE });
+  };
+
+  useEffect((appState) => {
+    dispatch({ type: BUILDSTATE, state: appState });
   }, []);
 
+
   const GlobalState = {
-    blankBlock: appState.blankBlock,
-    xBlock: appState.xBlock,
-    oBlock: appState.oBlock,
-    player1: appState.player1,
-    setXBlock: setXBlock
-  }
+    ...appState,
+    setXBlock: setXBlock,
+    setStartGame: setStartGame,
+    resetState: resetState
+  };
 
   return (
     <AppContext.Provider value={GlobalState}>
